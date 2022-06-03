@@ -1,4 +1,5 @@
 const express = require("express")
+const { query } = require("./mysql-config")
 const conexion = require("./mysql-config")
 const app = express()
 
@@ -36,4 +37,14 @@ app.post("/persona",(req,res)=>{
                             res.send(error)
                             res.json(results)
                         })
+
+app.delete("/persona/:correo",(req,res)=>{
+    const id = req.params.correo
+    const sql = `DELETE FROM usuario where correo = ?`
+    conexion-query(sql,[correo],(error,results,fields)=>{
+        if (error)
+        res.send(error)
+        res.json(results)
+    })
+})
 })
